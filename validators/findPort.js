@@ -1,7 +1,5 @@
 import net from 'node:net'
 
-// console.log(await findPort(3000))
-
 export function findPort(setPort) {
   return new Promise((resolve) => {
     const server = net.createServer()

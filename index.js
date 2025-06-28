@@ -1,20 +1,21 @@
 import { argv } from 'node:process'
 import express from 'express'
-import { validateArgv } from './validateArgv.js'
-import { findPort } from './findPort.js'
+import { validateArgv } from './validators/validateArgv.js'
+import { findPort } from './validators/findPort.js'
+import { ProxyController } from './controllers/proxy.controller.js'
 
 const valArg = validateArgv(argv)
-console.log(valArg)
 
 if (valArg.origin) {
   const port = await findPort(valArg.port)
   const app = express()
+  const proxyController = new ProxyController({ origin: valArg.origin })
 
-  app.get('/', (req, res) => {
-    res.send('Hello World!')
-  })
+  app.get('/', proxyController.start)
+
+  app.get('/*p', proxyController.start)
 
   app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`)
+    console.log(`Server is listening on http://localhost:${port}`)
   })
 }

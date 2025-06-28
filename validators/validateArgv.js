@@ -19,14 +19,22 @@ export function validateArgv(argv) {
     if (argv[2] === '--origin' && argv[4] !== '--origin') {
       const so = argv[3]
       if (so.length >= 11 && so.toLowerCase().startsWith('http')) {
-        origin = argv[3]
+        try {
+          origin = new URL(so).href
+        } catch (error) {
+          console.log({ error: error.message })
+        }
       }
     }
 
     if (argv[4] === '--origin' && argv[2] !== '--origin') {
       const so = argv[5]
       if (so.length >= 11 && so.toLowerCase().startsWith('http')) {
-        origin = so
+        try {
+          origin = new URL(so).href
+        } catch (error) {
+          console.log({ error: error.message })
+        }
       }
     }
   } else {
