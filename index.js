@@ -11,8 +11,8 @@ if (valArg.origin) {
   const app = express()
   const proxyController = new ProxyController({ origin: valArg.origin })
 
+  app.disable('x-powered-by')
   app.get('/', proxyController.start)
-
   app.get('/*p', proxyController.start)
 
   app.listen(port, () => {

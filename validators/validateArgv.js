@@ -38,7 +38,12 @@ export function validateArgv(argv) {
       }
     }
   } else {
-    console.log('only --origin and --port are acepted.')
+    const message = `\n\r*************** NOTES ***************
+    \rMust enter correct values,
+    \r--origin es required,
+    \ronly --origin and --port are acepted.
+    \r*************************************\n`
+    console.log(message)
   }
   const valArg = {
     port,
