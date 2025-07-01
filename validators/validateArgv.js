@@ -1,3 +1,5 @@
+import { clearCache } from '../controllers/clear-cache.js'
+
 export function validateArgv(argv) {
   let port
   let origin
@@ -37,11 +39,15 @@ export function validateArgv(argv) {
         }
       }
     }
+  } else if (argv[2] === '--clear-cache' && argv.length === 3) {
+    // reset cache
+    clearCache()
   } else {
     const message = `\n\r*************** NOTES ***************
     \rMust enter correct values,
     \r--origin es required,
-    \ronly --origin and --port are acepted.
+    \ronly --origin and --port are acepted.\n
+    \rOnly --clear-cache is accepted to reset the cache.
     \r*************************************\n`
     console.log(message)
   }
