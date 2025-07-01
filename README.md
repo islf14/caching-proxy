@@ -28,5 +28,11 @@ node index --port 3000 --origin http://dummyjson.com
 - The sever assigns an available port (e.g. server will listen to port 60413).
 
 ```bash
-$ node index --origin http://dummyjson.com
+node index --origin http://dummyjson.com
+```
+
+- Run the following command to clear the cache.
+
+```bash
+node index --clear-cache
 ```
